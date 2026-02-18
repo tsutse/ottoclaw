@@ -7,22 +7,22 @@ import { MOLTBOT_PORT } from '../config';
 const hooks = new Hono<AppEnv>();
 
 /**
- * POST /hooks/whatsapp?token=<WHATSAPP_HOOK_TOKEN>
+ * POST /hooks/whatsapp?token=<OPENCLAW_HOOKS_TOKEN>
  *
  * Receives WhatsApp messages from WaSender API and injects them into the
  * OpenClaw agent via its WebSocket gateway.
  *
  * This route intentionally sits outside Cloudflare Access — it uses its own
- * token (WHATSAPP_HOOK_TOKEN) so that WaSender can call it without custom headers.
+ * token (OPENCLAW_HOOKS_TOKEN) so that WaSender can call it without custom headers.
  */
 hooks.post('/whatsapp', async (c) => {
   // --- Token validation ---
   const token = c.req.query('token');
-  if (!c.env.WHATSAPP_HOOK_TOKEN) {
-    console.error('[HOOKS/WA] WHATSAPP_HOOK_TOKEN is not configured');
+  if (!c.env.OPENCLAW_HOOKS_TOKEN) {
+    console.error('[HOOKS/WA] OPENCLAW_HOOKS_TOKEN is not configured');
     return c.json({ error: 'Webhook not configured' }, 503);
   }
-  if (!token || token !== c.env.WHATSAPP_HOOK_TOKEN) {
+  if (!token || token !== c.env.OPENCLAW_HOOKS_TOKEN) {
     return c.json({ error: 'Unauthorized' }, 401);
   }
 

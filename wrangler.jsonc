@@ -94,7 +94,7 @@
   // - WORKER_URL: Public URL of the worker
   //
   // Webhook integrations (optional):
-  // - WHATSAPP_HOOK_TOKEN: Token to authenticate WaSender webhook POSTs to /hooks/whatsapp
+  // - OPENCLAW_HOOKS_TOKEN: Token to authenticate WaSender webhook POSTs to /hooks/whatsapp
   //
   // R2 persistent storage (optional, for data persistence across sessions):
   // - R2_ACCESS_KEY_ID: R2 access key ID (from R2 API tokens)
